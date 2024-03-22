@@ -19,6 +19,7 @@ app.layout = html.Div([
     )
 ])
 
+
 # 콜백 함수: 그래프 업데이트
 @app.callback(
     Output('live-update-graph', 'figure'),
