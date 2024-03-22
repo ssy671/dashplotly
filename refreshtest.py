@@ -4,7 +4,7 @@ from dash.dependencies import Input, Output
 import time
 import random
 # Dash 앱 초기화
-app = dash.Dash(__nagit add .me__)
+app = dash.Dash(__name__)
 
 # 레이아웃 생성
 app.layout = html.Div([
