@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotly Scatterplot</title>
+    <!-- Plotly CDN 추가 -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <!-- 그래프를 보여줄 div -->
+    <div id="scatter-plot"></div>
+
+    <!-- 선택된 점의 정보를 표시할 div -->
+    <div id="selected-point-info"></div>
+
+    <script>
+        // 샘플 데이터
+        var data = [{
+            x: [1, 2, 3, 4, 5],
+            y: [2, 3, 5, 7, 11],
+            mode: 'markers',
+            type: 'scatter',
+            text: ['A', 'B', 'C', 'D', 'E'],
+            marker: {
+                size: 12
+            }
+        }];
+
+        // Plotly 그래프 생성
+        var layout = {
+            title: 'Scatter Plot with Plotly',
+            xaxis: {
+                title: 'X axis'
+            },
+            yaxis: {
+                title: 'Y axis'
+            }
+        };
+        Plotly.newPlot('scatter-plot', data, layout);
+
+        // 그래프 클릭 이벤트 핸들러
+        var scatterplot = document.getElementById('scatter-plot');
+        scatterplot.on('plotly_click', function(data){
+            var selectedPoint = data.points[0];
+            var pointInfo = document.getElementById('selected-point-info');
+            pointInfo.innerHTML = '<h4>Selected Point Information</h4>' +
+                                  '<p>X: ' + selectedPoint.x + '</p>' +
+                                  '<p>Y: ' + selectedPoint.y + '</p>' +
+                                  '<p>Label: ' + selectedPoint.text + '</p>';
+        });
+    </script>
+</body>
+</html>
