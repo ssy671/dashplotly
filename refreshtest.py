@@ -21,6 +21,7 @@ app.layout = html.Div([
 
 # push test 잘되는거같구만
 # push 확인!!
+# 다시 시도!!!!
 # 콜백 함수: 그래프 업데이트
 @app.callback(
     Output('live-update-graph', 'figure'),
