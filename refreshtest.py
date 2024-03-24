@@ -3,7 +3,7 @@ from dash import dcc, html
 from dash.dependencies import Input, Output
 import time
 import random
-# Dash 앱 초기화
+# Dash 앱 초기화555
 app = dash.Dash(__name__)
 
 # 레이아웃 생성
