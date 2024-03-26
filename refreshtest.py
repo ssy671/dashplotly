@@ -25,7 +25,7 @@ app.layout = html.Div([
         # Interval 컴포넌트: 10초마다 새로고침
         dcc.Interval(
             id='interval-component',
-            interval=1*1000,  # 10초마다 새로고침 (단위: 밀리초)
+            interval=1*1000,  # 5초마다 새로고침 (단위: 밀리초)
             n_intervals=0
         )
     ]),
@@ -34,7 +34,7 @@ app.layout = html.Div([
 
         dcc.Interval(
             id='interval-component',
-            interval=1*1000,  # 10초마다 새로고침 (단위: 밀리초)
+            interval=1*1000,  # 5초마다 새로고침 (단위: 밀리초)
             n_intervals=0
         )
     ])
