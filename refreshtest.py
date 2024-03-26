@@ -1,20 +1,30 @@
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
+import plotly.graph_objs as go
+
 import time
 import random
+
+import pandas as pd
+
+
 # Dash 앱 초기화555
 app = dash.Dash(__name__)
+
+# 데이터 read
+df = pd.read_csv('./onlinefoods.csv')
+print(df.head())
 
 # 레이아웃 생성
 app.layout = html.Div([
     # 그래프
-    dcc.Graph(id='live-update-graph'),
+    dcc.Graph(id='live-update-graph',),
 
     # Interval 컴포넌트: 10초마다 새로고침
     dcc.Interval(
         id='interval-component',
-        interval=5*1000,  # 10초마다 새로고침 (단위: 밀리초)
+        interval=1*1000,  # 10초마다 새로고침 (단위: 밀리초)
         n_intervals=0
     )
 ])
@@ -26,15 +36,17 @@ app.layout = html.Div([
     [Input('interval-component', 'n_intervals')]
 )
 def update_graph_live(n):
-    # 예시 데이터 생성
-    data = {
-        'x': [random.randint(1, 100) for _ in range(4)],
-        'y': [random.randint(1, 100) for _ in range(4)],
-        'type': 'line',
-        'name': '데이터'
-    }
+    x_data = df['latitude'].to_list()
+    y_data = df['longitude'].to_list()
 
-    return {'data': [data], 'layout': {'title': '실시간 업데이트 그래프'}}
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=x_data, y=y_data, mode='markers'))
+
+    fig.update_layout(title='sctter related foods',
+                      width = 1000,
+                      height= 1000)
+
+    return fig
 
 if __name__ == '__main__':
     app.run_server(debug=True)
